@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SOLVE</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+<div id="simscreen">
+
+    <div class="simsubscreen" id="canvas0">
+        <div class="head">
+            <h2>Exploring Morse Code: Q Codes</h2>
+        </div>
+        <div class="main">
+            <br><br><h3 class="incanvas">Objective:</h3><br>
+            <p id="objpara">To achieve a thorough understanding and familiarity with a specific set of
+                abbreviations employed in Morse Code communications, which are commonly
+                referred to as Q Codes.</p>
+            <br><br><h3 id="description">Description:</h3>
+            <br><p id="descpara">Morse code is a method of transmitting text information as a series of on-off tones,
+                lights, or clicks that can be directly understood by a skilled listener or observer
+                without special equipment. It is a system of dots and dashes that can be used to
+                send messages over long distances. It was originally used by telegraph operators to
+                send messages using electrical pulses. Radio communicators later adapted the code
+                to use it as an auditory language. <br>
+                <br>Morse code can be used to send messages using Wires, Radios, Sound, Light.
+                Messages can be sent by Tapping, Drumming, Buzzing, Clicking, or flashing light.
+                Morse code is still used today by many ham radio operators. It's a recognised mode
+                of communication in the amateur radio community, and some operators enjoy the
+                challenge and efficiency of using Morse code for long-distance communication. It is
+                also used in emergency signals and in technology to help disabled people
+                communicate.</p>
+        </div>
+
+        <div id="nav">
+            <img id="nextButton" onclick="navNext(), select3()" src="Next.png" />
+        </div>
+         
+        <div id="copyright"> &copy; SOLVE - The Virtual Lab @ NITK Surathkal, Department of Water Resources & Ocean Engineering</div>
+    </div>
+
+    <div class="simsubscreen" id="canvas1" style="visibility:hidden;">
+        <div class="head">
+            <h2>Exploring Morse Code: Q Codes</h2>
+        </div>
+        <div class="main1">
+            <div class="step1">
+                <strong class="incanvas">STEP</strong>
+                <span class="circlebg">&nbsp;1&nbsp;</span>
+                <span class="steptext">&nbsp;Select the Q Codes from dropdown menu.</span>
+            </div>
+    
+            <label class="switch">
+                <input type="checkbox" id="toggle">
+                <span class="slider"></span>
+            </label>
+            <label for="toggle" id="question"><strong>Question</strong></label>
+            <label for="toggle" id="answer"><strong>Answer</strong></label>
+        
+            <label for="dropdown-container" id="label1">Select the Q codes :</label>
+            <div id="dropdown-container">
+                <select id="dropdown"></select>
+            </div>
+
+            <div id="mandatoryMessage">
+                Please select an option from the dropdown.
+            </div>
+        
+            <button id="submit" onclick="navNext(), select(), select1()">Submit</button>
+            <div id="copyright"> &copy; SOLVE - The Virtual Lab @ NITK Surathkal, Department of Water Resources & Ocean Engineering</div>
+    
+        </div>
+        </div>
+
+    <div class="simsubscreen" id="canvas2" style="visibility:hidden;">
+        <div class="head">
+            <h2>Exploring Morse Code: Q Codes</h2>
+        </div>
+        <div class="main2">
+            <div class="step2">
+                <strong class="incanvas">STEP</strong>
+                <span class="circlebg">&nbsp;2&nbsp;</span>
+                <span class="steptext">&nbsp;Click on the play button to start the transmission process.</span>
+            </div>
+    
+            <div id="resultbox"></div>
+            <button class="playbutton" id="play" onclick="play(), pause()">&#9654;<br>Play</button>
+            <div class="audio">Keep audio on</div>
+            <div class="box" id="qbox"></div>
+            <div class="codebox" id="codebox"></div>
+            <button class="loop-button" id="loop-button" onclick="navPrev()"><img id="image1" src="	https://cdn-icons-png.flaticon.com/512/70/70196.png" alt="loop-button"><br>Repeat</button>
+            
+            <div id="copyright"> &copy; SOLVE - The Virtual Lab @ NITK Surathkal, Department of Water Resources & Ocean Engineering</div>
+    
+        </div>
+        </div>
+
+    
+</div>
+<script src="script.js"></script>
+</body> 
+</html>

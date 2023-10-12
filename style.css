@@ -1,0 +1,280 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+.simsubscreen{
+    border: 1px solid black;
+    height: 600px;
+    width: 800px;
+	font-family: verdana;
+}
+
+.head{
+    border: 1px solid black;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: black;
+    text-transform: uppercase;
+}
+
+.main{
+	padding-left: 20px;
+}
+
+.main1{
+	padding-left: 20px;
+}
+
+.main2{
+	padding-left: 20px;
+}
+
+#objpara{
+	font-size: 14px;
+}
+
+#descpara{
+	font-size: 14px;
+}
+
+#nextButton
+{
+	position:absolute;
+	left:750px;
+	top:530px;
+	cursor:pointer;
+}
+
+#canvas1{
+	position: absolute;
+	top:0px;
+}
+
+#canvas2{
+	position: absolute;
+	top:0px;
+}
+
+#qCodes{
+	position: absolute;
+	top: 150px;
+	left: 220px;
+}
+
+#label1{
+	position: absolute;
+	top: 150px;
+	left: 30px;
+}
+
+#question{
+	position: absolute;
+	left: 560px;
+  	top: 190px;
+}
+
+#answer{
+	position: absolute;
+	left: 670px;
+  	top: 190px;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 34px;
+	left: 600px;
+	top: 110px;
+	border: 1px solid black;
+	border-radius: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px; /* Rounded slider */
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%; 
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: black;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px black;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(35px);
+}
+
+#dropdown-container {
+    position: absolute;
+	top: 140px;
+	left: 220px;
+}
+
+#dropdown {
+    
+    width: 100px;
+    padding: 10px;
+}
+
+.circlebg{
+	border-radius:100%;
+	font-size:25px;
+	color:#fff;
+	text-align:center;
+	background:#000
+}
+
+#submit{
+	position: absolute;
+	top: 400px;
+	left: 330px;
+	width: 100px;
+	height: 20px;
+	text-align: center;
+}
+
+#loop-button{
+	position: absolute;
+	top: 420px;
+	left: 330px;
+	width: 100px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+#copyright{
+	position: absolute;
+	left:50px;
+	top: 580px;
+	font-size:12px
+}
+
+#resultbox{
+	border: 1px solid black;
+	border-radius: 10%;
+	height: 50px;
+	width: 70px;
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	padding-top: 20px;
+	padding-left: 15px;
+	font-size: 15px;
+}
+
+#play{
+	border: 1px solid black;
+	border-radius: 50%;
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	top: 200px;
+	left: 275px;
+	font-size: 15px;
+}
+
+.box{
+	position: absolute;
+	height: 100px;
+	width: 400px;
+	top: 300px;
+	left: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.codebox{
+	position: absolute;
+	height: 100px;
+	width: 430px;
+	top: 180px;
+	left: 370px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 50px;
+}
+
+#image1{
+	position: absolute;
+	top: 0px;
+	left: 20px;
+	width: 50px;
+	height: 20px;
+}
+
+.step1{
+	position: absolute;
+	top: 50px;
+}
+
+.step2{
+	position: absolute;
+	top: 50px;
+}
+
+.steptext{
+	font-size: 16px;
+}
+
+.audio{
+	color: red;
+	position: absolute;
+	top: 280px;
+	left: 260px;
+	font-size: 16px;
+}
+
+#mandatoryMessage{
+	color: red;
+	position: absolute;
+	top: 200px;
+	left: 100px;
+	font-size: 16px;
+}
