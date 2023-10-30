@@ -2,72 +2,107 @@ let simsubscreennum = 0;
 let temp = 0;
 
 const questionOptions = [
-    { id: 1, text: "QRA?", code: "--.- .-. .- ..--..", question: "What is the name of your station?"},
-    { id: 2, text: "QRG?", code: "--.- .-. --. ..--..", question: "What is the exact frequency?"},
+    { id: 1, text: "QRA?", code: "--.- .-. .- ..--..", question: "What is the name (or call sign) of your station?"},
+    { id: 2, text: "QRG?", code: "--.- .-. --. ..--..", question: "Will you tell me my exact frequency (or that of...)?"},
     { id: 3, text: "QRH?", code: "--.- .-. .... ..--..", question: "Does my frequency vary?"},
     { id: 4, text: "QRI?", code: "--.- .-. .. ..--..", question: "How is the tone of my transmission?"},
-    { id: 5, text: "QRK?", code: "--.- .-. -.- ..--..", question: "What is the readability of my signals?"},
-    { id: 6, text: "QRL?", code: "--.- .-. .-.. ..--..", question: "Are you busy?    Is the frequency in use?"},
-    { id: 7, text: "QRM?", code: "--.- .-. -- ..--..", question: "Are you being interested with?"},
-    { id: 8, text: "QRN?", code: "--.- .-. -. ..--..", question: "Are you bothered by atmosphere?"},
-    { id: 9, text: "QRO?", code: "--.- .-. --- ..--..", question: "Shall I increase my power of my transmitter?"},
-    { id: 10, text: "QRS?", code: "--.- .-. ... ..--..", question: "Should I decrease my sending speed?"},
-    { id: 11, text: "QRT?", code: "--.- .-. - ..--..", question: "Should I stop my transmission?"},
-    { id: 12, text: "QRU?", code: "--.- .-. ..- ..--..", question: "Do you have you anything for me?"},
-    { id: 13, text: "QRV?", code: "--.- .-. ...- ..--..", question: "Are you ready?"},
-    { id: 14, text: "QRW?", code: "--.- .-. .-- ..--..", question: "Shall I advise...that you are calling him on...kHz?"},
-    { id: 15, text: "QRX?", code: "--.- .-. -..- ..--..", question: "When will you call me back?"},
-    { id: 16, text: "QRZ?", code: "--.- .-. --.. ..--..", question: "Who was calling me?"},
-    { id: 17, text: "QSA?", code: "--.- ... .- ..--..", question: "What is the strength of my signals?"},
-    { id: 18, text: "QSB?", code: "--.- ... -... ..--..", question: "Is my signal fading?"},
-    { id: 19, text: "QSL?", code: "--.- ... .-.. ..--..", question: "Can you confirm reception?"},
-    { id: 20, text: "QSO?", code: "--.- ... --- ..--..", question: "Can you make contact with...(me)?"},
-    { id: 21, text: "QSU?", code: "--.- ... ..- ..--..", question: "Shall I send or reply on this frequency or on.....kHz with ...emission of class?"},
-    { id: 22, text: "QSV?", code: "--.- ... ...- ..--..", question: "Shall I send a series of VVV....?"},
-    { id: 23, text: "QSW?", code: "--.- ... .-- ..--..", question: "Will you send on this frequency or on ...khz with...emission of class?"},
-    { id: 24, text: "QSX?", code: "--.- ... -..- ..--..", question: "Can you listen on...?"},
-    { id: 25, text: "QSY?", code: "--.- ... -.-- ..--..", question: "Shall I start transmitting on another frequency?"},
-    { id: 26, text: "QSZ?", code: "--.- ... --.. ..--..", question: "Shall I send each word or group twice?"},
-    { id: 27, text: "QTC?", code: "--.- - -.-. ..--..", question: "Do you have a message for me?"},
-    { id: 28, text: "QTH?", code: "--.- - .... ..--..", question: "What is your location (latitude and longitude or by name of the location)?"},
-    { id: 29, text: "QTR?", code: "--.- - .-. ..--..", question: "What is the exact time?"},
-    { id: 30, text: "QUM?", code: "--.- ..- -- ..--..", question: "Is the Distress traffic over?"}
+    { id: 5, text: "QRJ?", code: "--.- .-. .--- ..--..", question: "How many voice contacts do you want to make?"},
+    { id: 6, text: "QRK?", code: "--.- .-. -.- ..--..", question: "What is the readability of my signals?"},
+    { id: 7, text: "QRL?", code: "--.- .-. .-.. ..--..", question: "Are you busy? \nIs the frequency in use?"},
+    { id: 8, text: "QRM?", code: "--.- .-. -- ..--..", question: "Do you have interference?"},
+    { id: 9, text: "QRN?", code: "--.- .-. -. ..--..", question: "Are you troubled by static?"},
+    { id: 10, text: "QRO?", code: "--.- .-. --- ..--..", question: "Shall I increase power?"},
+    { id: 11, text: "QRP?", code: "--.- .-. .--. ..--..", question: "Shall I decrease power?"},
+    { id: 12, text: "QRQ?", code: "--.- .-. --.- ..--..", question: "Shall I send Master?"},
+    { id: 13, text: "QRS?", code: "--.- .-. ... ..--..", question: "Shall I send more slowly?"},
+    { id: 14, text: "QRT?", code: "--.- .-. - ..--..", question: "Shall I cease or suspend operation? \n shutoff the radio ?"},
+    { id: 15, text: "QRU?", code: "--.- .-. ..- ..--..", question: "Do you have you anything for me?"},
+    { id: 16, text: "QRV?", code: "--.- .-. ...- ..--..", question: "Are you ready?"},
+    { id: 17, text: "QRW?", code: "--.- .-. .-- ..--..", question: "Shall I advise...that you are calling him on...kHz?"},
+    { id: 18, text: "QRX?", code: "--.- .-. -..- ..--..", question: "When will you call me back?"},
+    { id: 19, text: "QRZ?", code: "--.- .-. --.. ..--..", question: "Who was calling me?"},
+    { id: 20, text: "QSA?", code: "--.- ... .- ..--..", question: "What is the strength of my signals?"},
+    { id: 21, text: "QSB?", code: "--.- ... -... ..--..", question: "Is my signal fading?"},
+    { id: 22, text: "QSD?", code: "--.- ... -.. ..--..", question: "Is my keying defective?"},
+    { id: 23, text: "QSG?", code: "--.- ... --. ..--..", question: "Shall I send ... telegrams (messages) at a time?"},
+    { id: 24, text: "QSK?", code: "--.- ... -.- ..--..", question: "Can you hear me between your signals?"},
+    { id: 25, text: "QSL?", code: "--.- ... .-.. ..--..", question: "Can you confirm reception?"},
+    { id: 26, text: "QSM?", code: "--.- ... -- ..--..", question: "Shall I repeat the last telegram (message) which I sent you, or some previous telegram (message)?"},
+    { id: 27, text: "QSN?", code: "--.- ... -. ..--..", question: "Did you hear me (or ... (call sign)) on .. kHz (or MHz)?"},
+    { id: 28, text: "QSO?", code: "--.- ... --- ..--..", question: "Can you make contact with...(me)?"},
+    { id: 29, text: "QSP?", code: "--.- ... .--. ..--..", question: "Will you relay a message to ...?"},
+    { id: 30, text: "QSR?", code: "--.- ... .-. ..--..", question: "Do you want me to repeat my call?"},
+    { id: 31, text: "QSS?", code: "--.- ... ... ..--..", question: "What working frequency will you use?"},
+    { id: 32, text: "QST?", code: "--.- ... - ..--..", question: "-"},
+    { id: 33, text: "QSU?", code: "--.- ... ..- ..--..", question: "Shall I send or reply on this frequency or on.....kHz with ...emission of class?"},
+    { id: 34, text: "QSW?", code: "--.- ... .-- ..--..", question: "Will you send on this frequency or on ...khz with...emission of class?"},
+    { id: 35, text: "QSX?", code: "--.- ... -..- ..--..", question: "Can you listen on...?"},
+    { id: 36, text: "QSY?", code: "--.- ... -.-- ..--..", question: "Shall I start transmitting on another frequency?"},
+    { id: 37, text: "QSZ?", code: "--.- ... --.. ..--..", question: "Shall I send each word or group twice?"},
+    { id: 38, text: "QTA?", code: "--.- - .- ..--..", question: "Shall I cancel telegram (message) No.	as if it had not been sent? "},
+    { id: 39, text: "QTC?", code: "--.- - -.-. ..--..", question: "Do you have a message for me?"},
+    { id: 40, text: "QTH?", code: "--.- - .... ..--..", question: "What is your location (latitude and longitude or by name of the location)?"},
+    { id: 41, text: "QTR?", code: "--.- - .-. ..--..", question: "What is the exact time?"},
+    { id: 42, text: "QTU?", code: "	--.- - ..- ..--..", question: "At what times are you operating?"},
+    { id: 43, text: "QTX?", code: "--.- - -..- ..--..", question: "Will you keep your station open for further communication with me until further notice (or until... hours)?"},
+    { id: 44, text: "QUA?", code: "--.- ..- .- ..--..", question: "Have you news of ... (call sign)?"},
+    { id: 45, text: "QUC?", code: "--.- ..- -.-. ..--..", question: "What is the number (or other indication) of the last message you received from me (or from ... (call sign))?"},
+    { id: 46, text: "QUD?", code: "--.- ..- -.. ..--..", question: "Have you received the urgency signal sent by ... (call sign of mobile station)?"},
+    { id: 47, text: "QUE?", code: "--.- ..- . ..--..", question: "Can you speak in ... (language), - with interpreter if necessary; if so, on what frequencies?"},
+    { id: 48, text: "QUF?", code: "--.- ..- ..-. ..--..", question: "Have you received the distress signal sent by ... (call sign of mobile station)?"}
 ];
 
 
 const answerOptions = [
-    { id: 1, text: "QRA", code: "--.- .-. .-", question: "The name of my station is....."},
-    { id: 2, text: "QRG", code: "--.- .-. --.", question: "The exact frequency is......"},
+    { id: 1, text: "QRA", code: "--.- .-. .-", question: "The name (or call sign) of my station iS ..."},
+    { id: 2, text: "QRG", code: "--.- .-. --.", question: "Your exact frequency (or that of... ) is ... kHz (or MHz)."},
     { id: 3, text: "QRH", code: "--.- .-. ....", question: "Your frequency varies."},
-    { id: 4, text: "QRI", code: "--.- .-. ..", question: "The tone of your transmission is....  1.Good 2.Variable 3.Bad"},
-    { id: 5, text: "QRK", code: "--.- .-. -.-", question: "The readability of your signals is: 1:Bad 2:Fairly bad 3:Reasonably good 4:Good 5:Excellent"},
-    { id: 6, text: "QRL", code: "--.- .-. .-..", question: "I am busy.    The frequency  is in use."},
-    { id: 7, text: "QRM", code: "--.- .-. --", question: "i am interfered with. 1:I am not all interfered with 2:Slightly 3:Moderately 4:Strongly 5:very strongly"},
-    { id: 8, text: "QRN", code: "--.- .-. -.", question: "I am bothered by atmospherics 1:Not at all 2:Slightly 3:Moderately 4:Strongly 5:Very Strongly"},
-    { id: 9, text: "QRO", code: "--.- .-. ---", question: "Increase power."},
-    { id: 10, text: "QRS", code: "--.- .-. ...", question: "Decrease your sending speed."},
-    { id: 11, text: "QRT", code: "--.- .-. -", question: "Stop your transmission."},
-    { id: 12, text: "QRU", code: "--.- .-. ..-", question: "I have nothing for you."},
-    { id: 13, text: "QRV", code: "--.- .-. ...-", question: "I am ready."},
-    { id: 14, text: "QRW", code: "--.- .-. .--", question: "Please advise...that I am calling him on kHz."},
-    { id: 15, text: "QRX", code: "--.- .-. -..-", question: "I will call you back at... Also:wait,standby."},
-    { id: 16, text: "QRZ", code: "--.- .-. --..", question: "You are called by..."},
-    { id: 17, text: "QSA", code: "--.- ... .-", question: "The strength of your signals is: 1:Bad 2:Fairly bad 3:Reasonable good 4:Good 5:Excellent"},
-    { id: 18, text: "QSB", code: "--.- ... -...", question: "Your signal is fading."},
-    { id: 19, text: "QSL", code: "--.- ... .-..", question: "I confirm reception."},
-    { id: 20, text: "QSO", code: "--.- ... ---", question: "I can make contact with...(you)."},
-    { id: 21, text: "QSU", code: "--.- ... ..-", question: "Send or reply on this frequency or on...kHz with...emission of class."},
-    { id: 22, text: "QSV", code: "--.- ... ...-", question: "Send a series of VVV."},
-    { id: 23, text: "QSW", code: "--.- ... .--", question: "I am going to send on this frequency or on...kHz with...emission of class."},
-    { id: 24, text: "QSX", code: "--.- ... -..-", question: "Listen on..."},
-    { id: 25, text: "QSY", code: "--.- ... -.--", question: "Start transmitting on...  Also:change frequency(to...)."},
-    { id: 26, text: "QSZ", code: "--.- ... --..", question: "Send each word or group twice."},
-    { id: 27, text: "QTC", code: "--.- - -.-.", question: "I have a message for you."},
-    { id: 28, text: "QTH", code: "--.- - ....", question: "My location is...latitude and longitude or:my location is..."},
-    { id: 29, text: "QTR", code: "--.- - .-.", question: "The exact time is..."},
-    { id: 30, text: "QUM", code: "--.- ..- --", question: "The Distress traffic is over"},
+    { id: 4, text: "QRI", code: "--.- .-. ..", question: "The tone of your transmission is....  \n1.Good \n2.Variable \n3.Bad"},
+    { id: 5, text: "QRJ", code: "--.- .-. .---", question: "I want to make ... voice contacts."},
+    { id: 6, text: "QRK", code: "--.- .-. -.-", question: "The readability of your signals is: \n1:Bad \n2:Fairly bad \n3:Reasonably good \n4:Good \n5:Excellent"},
+    { id: 7, text: "QRL", code: "--.- .-. .-..", question: "I am busy. \nThe frequency  is in use."},
+    { id: 8, text: "QRM", code: "--.- .-. --", question: "i am interfered with. \n1:I am not all interfered with \n2:Slightly \n3:Moderately \n4:Strongly \n5:very strongly"},
+    { id: 9, text: "QRN", code: "--.- .-. -.", question: "I am bothered by atmospherics \n1:Not at all \n2:Slightly \n3:Moderately \n4:Strongly \n5:Very Strongly"},
+    { id: 10, text: "QRO", code: "--.- .-. ---", question: "Increase power."},
+    { id: 11, text: "QRP", code: "--.- .-. .--.", question: "Decrease power."},
+    { id: 12, text: "QRQ", code: "--.- .-. --.-", question: "Send faster (... wpm)"},
+    { id: 13, text: "QRS", code: "--.- .-. ...", question: "Send more slowly (... wpm)"},
+    { id: 14, text: "QRT", code: "--.- .-. -", question: "I am suspending operation./n shutting off the radio"},
+    { id: 15, text: "QRU", code: "--.- .-. ..-", question: "I have nothing for you."},
+    { id: 16, text: "QRV", code: "--.- .-. ...-", question: "I am ready."},
+    { id: 17, text: "QRW", code: "--.- .-. .--", question: "Please advise...that I am calling him on kHz."},
+    { id: 18, text: "QRX", code: "--.- .-. -..-", question: "Please standby/ I will call you again at ... (hours) on ... kHz (or MHz)"},
+    { id: 19, text: "QRZ", code: "--.- .-. --..", question: "You are being called by ... on ... kHz (or MHz)"},
+    { id: 20, text: "QSA", code: "--.- ... .-", question: "The strength of your signals is: \n1:Bad \n2:Fairly bad \n3:Reasonable good \n4:Good \n5:Excellent"},
+    { id: 21, text: "QSB", code: "--.- ... -...", question: "Your signal is fading."},
+    { id: 22, text: "QSD", code: "--.- ... -..", question: "Your keying is defective."},
+    { id: 23, text: "QSG", code: "--.- ... --.", question: "Send ... telegrams (messages) at a time."},
+    { id: 24, text: "QSK", code: "--.- ... -.-", question: "I can hear you between my signals."},
+    { id: 25, text: "QSL", code: "--.- ... .-..", question: "I confirm reception."},
+    { id: 26, text: "QSM", code: "--.- ... --", question: "Repeat the last telegram (message) which you sent me (or telegrams messages) numbers ...)."},
+    { id: 27, text: "QSN", code: "--.- ... -.", question: "I did hear you (or ... (call sign)) on ..kHz (or MHz)."},
+    { id: 28, text: "QSO", code: "--.- ... ---", question: "I can make contact with...(you)."},
+    { id: 29, text: "QSP", code: "--.- ... .--.", question: "I will relay a message to ... ."},
+    { id: 30, text: "QSR", code: "--.- ... .-.", question: "Please repeat your call; I did not hear you."},
+    { id: 31, text: "QSS", code: "--.- ... ---", question: "I will use the working frequency ... kHz (or MHz)."},
+    { id: 32, text: "QST", code: "--.- ... -", question: "Here is a broadcast message to all amateurs."},
+    { id: 33, text: "QSU", code: "--.- ... ..-", question: "Send or reply on this frequency or on...kHz with...emission of class."},
+    { id: 34, text: "QSW", code: "--.- ... .--", question: "I am going to send on this frequency or on...kHz with...emission of class."},
+    { id: 35, text: "QSX", code: "--.- ... -..-", question: "Listen on..."},
+    { id: 36, text: "QSY", code: "--.- ... -.--", question: "Start transmitting on...  \nAlso:change frequency(to...)."},
+    { id: 37, text: "QSZ", code: "--.- ... --..", question: "Send each word or group twice."},
+    { id: 38, text: "QTA", code: "--.- - .-", question: "Cancel telegram (message) No. as if it had not been sent."},
+    { id: 39, text: "QTC", code: "--.- - -.-.", question: "I have a message for you."},
+    { id: 40, text: "QTH", code: "--.- - ....", question: "My location is...latitude and longitude \nor:my location is..."},
+    { id: 41, text: "QTR", code: "--.- - .-.", question: "The exact time is..."},
+    { id: 42, text: "QTU", code: "	--.- - ..-", question: "I am operating from ... to ... hours."},
+    { id: 43, text: "QTX", code: "--.- - -..-", question: "I will keep my station open for further communication with you until further notice (or until ... hours)."},
+    { id: 44, text: "QUA", code: "--.- ..- .-", question: "Here is news of ... (call sign)."},
+    { id: 45, text: "QUC", code: "--.- ..- -.-.", question: "The number (or other indication) of the last message I received from you (or from ... (call sign)) is ..."},
+    { id: 46, text: "QUD", code: "--.- ..- -..", question: "I have received the urgency signal sent by ... (call sign of mobile station) at ... hours."},
+    { id: 47, text: "QUE", code: "--.- ..- .", question: "I can speak in ... (language) on ... kHz (or MHz)."},
+    { id: 48, text: "QUF", code: "--.- ..- ..-.", question: "I have received the distress signal sent by ... (call sign of mobile station) at ... hours."},
 ];
-
 
 
 //for nav next
@@ -80,7 +115,7 @@ function navNext() {
         mandatoryMessage.style.display = 'block';
         setTimeout(function () {
             mandatoryMessage.style.display = 'none';
-        }, 2000);
+        }, 3000);
     } else {
         mandatoryMessage.style.display = 'none';
         for (let temp = 0; temp < 2; temp++) {
@@ -94,35 +129,82 @@ function navNext() {
 
 
 
-
-//for result box
+//for result box and q box
 function select() {
-    const inputElement = document.getElementById('dropdown');
-    const selectedOptionId = inputElement.value;
+    const inputElement1 = document.getElementById('dropdown');
+    const inputElement2 = document.getElementById('dropdown2');
+    const toggle1 = document.getElementById('toggle');
+    const toggle2 = document.getElementById('toggle2');
     const resultbox = document.getElementById('resultbox');
+    const qbox = document.getElementById('qbox');
+    const resultbox1 = document.getElementById('resultbox1');
 
-    const selectedOption = toggle.checked
-        ? answerOptions.find(option => option.id === parseInt(selectedOptionId))
-        : questionOptions.find(option => option.id === parseInt(selectedOptionId));
+    const selectedOptionId1 = inputElement1.value;
+    const selectedOptionId2 = inputElement2.value;
 
-    if (selectedOption) {
-        resultbox.textContent = selectedOption.text;
+    let selectedOption1 = null;
+    let selectedOption2 = null;
+
+    if (toggle1.checked) {
+        selectedOption1 = answerOptions.find(option => option.id === parseInt(selectedOptionId1));
+    } else {
+        selectedOption1 = questionOptions.find(option => option.id === parseInt(selectedOptionId1));
+    }
+
+    if (toggle2.checked) {
+        selectedOption2 = answerOptions.find(option => option.id === parseInt(selectedOptionId2));
+    } else {
+        selectedOption2 = questionOptions.find(option => option.id === parseInt(selectedOptionId2));
+    }
+
+    if (inputElement2.value) {
+        if (selectedOption2) {
+            resultbox.textContent = selectedOption2.text;
+            qbox.innerHTML = selectedOption2.question.replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
+        }
+    } else if (selectedOption1) {
+        resultbox.textContent = selectedOption1.text;
+        qbox.innerHTML = selectedOption1.question.replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
     } else {
         resultbox.textContent = "";
+        qbox.textContent = "";
+    }
+
+    // Update resultbox1
+    if (selectedOption2) {
+        resultbox1.textContent = selectedOption2.text;
+    } else if (selectedOption1) {
+        resultbox1.textContent = selectedOption1.text;
+    } else {
+        resultbox1.textContent = "";
     }
 }
+
 document.getElementById('dropdown').onchange = select;
+document.getElementById('dropdown2').onchange = select;
+document.getElementById('toggle').onchange = select;
+document.getElementById('toggle2').onchange = select;
+select();
+
+document.getElementById('dropdown').onchange = select;
+document.getElementById('dropdown2').onchange = select;
+document.getElementById('toggle').onchange = select;
+document.getElementById('toggle2').onchange = select;
+select();
 
 
 
 
 //for dropdown and toggle 
-const dropdown = document.getElementById("dropdown");
-const toggle = document.getElementById("toggle");
+const dropdown1 = document.getElementById("dropdown");
+const toggle1 = document.getElementById("toggle");
+const dropdown2 = document.getElementById("dropdown2");
+const toggle2 = document.getElementById("toggle2");
 
-let selectedOptionId = null;
+let selectedOptionId1 = null;
+let selectedOptionId2 = null;
 
-function updateDropdownOptions() {
+function updateDropdownOptions(dropdown, toggle, selectedOptionId) {
     dropdown.innerHTML = "";
     const allOptions = toggle.checked ? answerOptions : questionOptions;
 
@@ -138,44 +220,58 @@ function updateDropdownOptions() {
     });
 }
 
-toggle.addEventListener("change", function () {
-    updateDropdownOptions();
-});
-
-updateDropdownOptions();
-
-dropdown.addEventListener("change", function () {
-    selectedOptionId = parseInt(dropdown.value);
-});
-
-selectedOptionId = parseInt(dropdown.value);
-
-updateDropdownOptions();
-
-
-
-
-
-//for question answer selection
-function select1() {
-    const inputElement = document.getElementById('dropdown');
-    const selectedOptionId = inputElement.value;
-    const resultbox = document.getElementById('qbox');
-    const toggle = document.getElementById('toggle');
-
-    const selectedQuestion = questionOptions.find(option => option.id === parseInt(selectedOptionId));
-    const selectedAnswer = answerOptions.find(option => option.id === parseInt(selectedOptionId));
-
-    if (selectedQuestion && !toggle.checked) {
-        resultbox.textContent = "Question: " + selectedQuestion.question;
-    } else if (selectedAnswer && toggle.checked) {
-        resultbox.textContent = "Answer: " + selectedAnswer.question;
-    } else {
-        resultbox.textContent = "";
-    }
+function synchronizeDropdowns() {
+    dropdown2.value = dropdown1.value;
+    selectedOptionId2 = parseInt(dropdown2.value);
+    updateDropdownOptions(dropdown2, toggle2, selectedOptionId2);
 }
 
-document.getElementById('dropdown').onchange = select;
+function synchronizeToggles() {
+    toggle2.checked = toggle1.checked;
+    updateDropdownOptions(dropdown1, toggle1, selectedOptionId1);
+    updateDropdownOptions(dropdown2, toggle2, selectedOptionId2);
+}
+
+toggle1.addEventListener("change", function () {
+    if (dropdown1.value !== "") {
+        synchronizeToggles();
+        selectedOptionId1 = parseInt(dropdown1.value);
+        updateDropdownOptions(dropdown1, toggle1, selectedOptionId1);
+    } else {
+        mandatoryMessage.style.display = 'block';
+        setTimeout(function () {
+            mandatoryMessage.style.display = 'none';
+        }, 4000);
+        toggle1.checked = !toggle1.checked;
+    }
+});
+
+toggle2.addEventListener("change", function () {
+    if (dropdown2.value !== "") {
+        toggle1.checked = toggle2.checked;
+        selectedOptionId2 = parseInt(dropdown2.value);
+        updateDropdownOptions(dropdown2, toggle2, selectedOptionId2);
+        synchronizeToggles();
+    }
+});
+
+dropdown1.addEventListener("change", function () {
+    selectedOptionId1 = parseInt(dropdown1.value);
+    synchronizeDropdowns();
+});
+
+dropdown2.addEventListener("change", function () {
+    selectedOptionId2 = parseInt(dropdown2.value);
+    synchronizeToggles();
+});
+
+selectedOptionId1 = parseInt(dropdown1.value);
+selectedOptionId2 = parseInt(dropdown2.value);
+
+updateDropdownOptions(dropdown1, toggle1, selectedOptionId1);
+updateDropdownOptions(dropdown2, toggle2, selectedOptionId2);
+synchronizeToggles();
+
 
 
 
@@ -187,11 +283,24 @@ let codeInterval;
 let dotAudioElement;
 let dashAudioElement;
 let playMorseCode = false;
-let paused = false; // Set paused to true initially
+let loopButton = document.getElementById("loop-button");
+
+// Add this line to hide the loop button initially
+loopButton.style.display = "none";
 
 function initializeAudio() {
     dotAudioElement = new Audio('dot.wav');
     dashAudioElement = new Audio('dash.wav');
+
+    // Add event listeners for audio completion
+    dotAudioElement.addEventListener("ended", audioPlaybackFinished);
+    dashAudioElement.addEventListener("ended", audioPlaybackFinished);
+}
+
+function audioPlaybackFinished(code) {
+    if (codeIndex >= code.length) {
+        loopButton.style.display = "block"; 
+    }
 }
 
 function select2() {
@@ -222,6 +331,7 @@ function select2() {
                 codeIndex++;
             } else {
                 clearInterval(codeInterval);
+                loopButton.style.display = "block"; // Show the loop button when the full code is displayed
             }
         }, 1000);
     } else {
@@ -239,23 +349,8 @@ function play() {
     }
 }
 
-function pause() {
-    paused = !paused;
-    if (paused) {
-        clearInterval(codeInterval);
-    } else {
-        select2();
-    }
-}
-
 const playButton = document.getElementById("play");
-const stopButton = document.getElementById("stop");
-
 playButton.addEventListener("click", play);
-stopButton.addEventListener("click", stop);
-
-const pauseButton = document.getElementById("pause");
-pauseButton.addEventListener("click", pause);
 
 
 
@@ -286,9 +381,14 @@ function clearSelectionsOnCurrentPage() {
     codebox.innerText = "";
 }
 
+function resetLoopButton() {
+    loopButton.style.display = "none";
+}
+
 function navPrev() {
     clearSelectionsOnCurrentPage();
     resetCurrentPage();
+    resetLoopButton();
     document.getElementById("canvas" + simsubscreennum).style.visibility = "hidden";
     simsubscreennum -= 1;
     document.getElementById("canvas" + simsubscreennum).style.visibility = "visible";
@@ -296,5 +396,6 @@ function navPrev() {
         document.getElementById("nextButton").style.visibility = "hidden";
     }
 }
+
 const prevButton = document.getElementById("prevButton");
 prevButton.addEventListener("click", navPrev);
